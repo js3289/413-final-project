@@ -1,0 +1,129 @@
+{"frames": {
+
+"Clear-bet-button.png":
+{
+	"frame": {"x":0,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Double-button.png":
+{
+	"frame": {"x":150,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Hit-button.png":
+{
+	"frame": {"x":300,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Insurance-button.png":
+{
+	"frame": {"x":450,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Menu-button.png":
+{
+	"frame": {"x":600,"y":0,"w":44,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":44,"h":44},
+	"sourceSize": {"w":44,"h":44},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Music-button1.png":
+{
+	"frame": {"x":644,"y":0,"w":44,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":44,"h":44},
+	"sourceSize": {"w":44,"h":44},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Music-button2.png":
+{
+	"frame": {"x":688,"y":0,"w":44,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":44,"h":44},
+	"sourceSize": {"w":44,"h":44},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"New-bet-button.png":
+{
+	"frame": {"x":732,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Place-bet-button.png":
+{
+	"frame": {"x":882,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Rebet-button.png":
+{
+	"frame": {"x":1032,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Split-button.png":
+{
+	"frame": {"x":1182,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Stand-button.png":
+{
+	"frame": {"x":1332,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Surrender-button.png":
+{
+	"frame": {"x":1482,"y":0,"w":150,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":50},
+	"sourceSize": {"w":150,"h":50},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Menu-buttons-sprite-sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":1632,"h":50},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:cd28842fb721716118363eda28e258da:8a3854e6909effa9d2b79970c00b2f13:b5b936cf0a720bdb6f477f4030848524$"
+}
+}
