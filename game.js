@@ -25,9 +25,9 @@
 	
 	PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
 
+// Containers, I use many and manipulate them to handle game screens / buttons.
 	var stage 			= new Container();
 	var gameplayC		= new Container();
-	var titleC 			= new Container();
 	var instructionsC 	= new Container();
 	var menuC 			= new Container();
 	var creditsC 		= new Container();
@@ -42,10 +42,19 @@
 	stage.scale.x = SCALE;
 	stage.scale.y = SCALE;
 	
-// Misc globals needed throughout game
+// Globals needed throughout game
+
+	// booleans
 	var dealing;
 	var handIsActive;
 	var hasMoney;
+	var betActive = false;
+	var busted = false;
+	var dealing = false;
+	var dealerHidden = false;
+	var muted = false;
+	
+	
 	var character
 	var deck = [];
 	var discard = [];
@@ -56,12 +65,7 @@
 	var discardSprite;
 	var bet = 0;
 	var money = 100;
-	var betActive = false;
-	var busted = false;
-	var dealing = false;
-	var dealerHidden = false;
 	var slide;
-	var muted = false;
 	
 // Buttons + text
 	var clearBetButton;
@@ -97,6 +101,8 @@
 	
 	var dealerCardX = 375;
 	var dealerCardY = 50;
+
+// Gamestate used to manipulate the containers with controlState
 	var gameState;
 	
 	
@@ -122,19 +128,23 @@ function loadGame() {
 	slide = PIXI.audioManager.getAudio("Assets/Dealcard.mp3");
 }
 
+// Creates the texts we use in the game (money, bet)
 function createTexts() {
 	var textOptions = { fill: '#1c7704' }
 	var textOptions2 = { fill: '#ffffff' }
 	
+	// how much money the player has
 	moneyText = new PIXI.Text(money, textOptions);
 	moneyText.x = 155;
 	moneyText.y = 855;
 	
+	// players current bet
 	betText = new PIXI.Text(bet, textOptions);
 	betText.x = 420;
 	betText.y = 855;
 	betText.interactive = true;
 	
+	// buttons to increase the bet
 	plus1 = new PIXI.Text("+1", textOptions2);
 	plus5 = new PIXI.Text("+5", textOptions2);
 	plus10 = new PIXI.Text("+10", textOptions2);
@@ -175,6 +185,7 @@ function createTexts() {
 		}
 	} );
 	
+	// add these to textC, the container we don't remove from the stage as we change most states.
 	textC.addChild(moneyText);
 	textC.addChild(betText);
 	textC.addChild(plus1);
@@ -182,6 +193,7 @@ function createTexts() {
 	textC.addChild(plus10);
 }
 
+// Create all the buttons that let us transition through the game states
 function createButtons() {
 	clearBetButton = new Button("Clear-bet", TextureFrame("Clear-bet-button.png") );
 	clearBetButton.on('mousedown', function() {
@@ -266,8 +278,11 @@ function createButtons() {
 	musicButton.x = 1100;
 	musicButton.y = 850;
 	textC.addChild(musicButton);
+	
+	// we add menuButton and musicButton to textC since that container doesn't change with the normal game buttons.
 	}
 
+// Add and fill our containers, the menu, board etc.
 function fillContainers() {
 	fillBoard();
 	
@@ -315,8 +330,8 @@ function fillContainers() {
 	losingC.addChild(new Sprite(TextureFrame("You-lose-page.png") ) );
 }
 
+// Add all of our misc. containers to the board - allows easy manipulation of cards in play.
 function fillBoard() {
-
 	board = new Sprite(TextureFrame("Assets/png/Board.png") );	
 	gameplayC.addChild(board);
 	gameplayC.addChild(deckC);
@@ -332,6 +347,7 @@ function fillBoard() {
 	
 }
 
+// ControlState - used to pass between initial turn, betting, dealer play, menu, etc.
 function controlState(state) {
 	for(var i = stage.children.length - 1; i >= 0; i--){
 		stage.removeChild(stage.children[i]);
@@ -575,6 +591,7 @@ function controlState(state) {
 	else if(gameState === "credits") {
 		stage.addChild(creditsC);
 	}
+	
 	else if(gameState === "gameOver") {
 		money = 100;
 		moneyText.text = money;
@@ -602,6 +619,7 @@ function controlState(state) {
 	}
 }
 
+// When the player stands, this function recursively handles the dealer's actions and decides the winner
 function finishDealerHand(dealerscore, playerscore) {
 	var pHasAce = 0;
 	var dHasAce = 0;
@@ -716,6 +734,7 @@ function finishDealerHand(dealerscore, playerscore) {
 	}
 }
 
+// discard the hands after the final hand state is reached
 function discardHand(entity) {
 	var pcards = playerC.children.length;
 	var dcards = dealerC.children.length;
@@ -752,6 +771,7 @@ function discardHand(entity) {
 	}
 }
 
+// keeps the sprites for the deck looking nice based on cards left in deck.
 function updateDeck() {
 
 	var deckLocationX = 950;
@@ -778,6 +798,7 @@ function updateDeck() {
 	}
 }
 
+// keeps discard looking nice, especially when the deck is shuffled.
 function updateDiscard() {
 	
 	var discardX = 75;
@@ -805,20 +826,24 @@ function updateDiscard() {
 	}
 }
 
+// creates our deck
 function createDeck() {
 	deck = new Deck();
 	deck.fill();
 }
 
+// helper function
 function randInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// basic animation
 function animate() {
 	requestAnimationFrame(animate);
 	renderer.render(stage);
 }
 
+// enhanced sprite class I have used in all of my projects
 class EnhSprite extends PIXI.Sprite {
 	constructor(name, texture) {
 		super(texture);
@@ -826,6 +851,7 @@ class EnhSprite extends PIXI.Sprite {
 	}
 }
 
+// button class that just makes sure the buttons are interactive
 class Button extends EnhSprite {
 	constructor(name, texture) {
 		super(name, texture);
@@ -834,6 +860,7 @@ class Button extends EnhSprite {
 	}
 }
 
+// Basic card that makes cards interactive and anchors them correctly, etc
 class Card extends EnhSprite {
 	constructor(name, suit, value, texture) {
 		super(name, texture);
@@ -850,12 +877,14 @@ class Card extends EnhSprite {
 	}
 }
 
+// Deck class used in our blackjack game.
 class Deck {
 	constructor() {
 		this.cards = [];
 		this.length = 0;
 	}
 	
+	// fills our deck with new card objects
 	fill() {
 		var name;
 		var suit;
@@ -946,6 +975,7 @@ class Deck {
 		}
 	}
 	
+	// shuffles deck
 	shuffle() {
 		var index = this.cards.length;
 		
@@ -960,6 +990,7 @@ class Deck {
 	
 	}
 
+	// handles everything from getting a card from the deck to the player/dealer
 	deal(entity) {
 		dealing = true;
 		var card = this.cards.shift();
@@ -997,6 +1028,7 @@ class Deck {
 		this.length -= 1;
 	}
 	
+	// starts hands this way, allows me to make dealer card hidden.
 	dealHand(entity) {
 		playerCardX = 375;
 		playerCardY = 450;
