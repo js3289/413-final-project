@@ -1030,6 +1030,7 @@ class Deck {
 	
 	// starts hands this way, allows me to make dealer card hidden.
 	dealHand(entity) {
+		dealerHidden = false;
 		playerCardX = 375;
 		playerCardY = 450;
 	
